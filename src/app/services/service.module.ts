@@ -5,7 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import {
   AuthService,
   LoginGuard,
-  UserService
+  UserService,
+  EmployeeService
 } from './service.index';
 
 @NgModule({
@@ -17,7 +18,8 @@ import {
   providers: [
     AuthService,
     LoginGuard,
-    UserService
+    UserService,
+    EmployeeService
   ]
 })
 export class ServiceModule { }

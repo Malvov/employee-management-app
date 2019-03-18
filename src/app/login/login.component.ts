@@ -32,7 +32,12 @@ export class LoginComponent implements OnInit {
     let auth = new Auth(form.value.email, form.value.password);
 
     this._authService.login(auth)
-    .subscribe(() => { this.router.navigate(['/home']); });
+    .subscribe(() => {
+      // nasty af
+      setTimeout(() => {
+        this.router.navigate(['/home']);
+      }, 50);
+     });
 
   }
 
