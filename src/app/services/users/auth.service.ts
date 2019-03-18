@@ -17,7 +17,7 @@ export class AuthService {
 
   user: User;
   token: string;
-  userId: string;
+  employeeId: string;
 
   constructor(
     public httpClient: HttpClient,
@@ -35,21 +35,21 @@ export class AuthService {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.user = JSON.parse(localStorage.getItem('user'));
-      this.userId = localStorage.getItem('userId');
+      this.employeeId = localStorage.getItem('employeeId');
     } else {
       this.token = '';
       this.user = null;
-      this.userId = '';
+      this.employeeId = '';
     }
     return { token: this.token, user: this.user };
   }
 
-  setInStorage(token: string, userId: string, user: User) {
-    localStorage.setItem('userId', userId);
+  setInStorage(token: string, employeeId: string, user: User) {
+    localStorage.setItem('employeeId', employeeId);
     localStorage.setItem('user', JSON.stringify(user));
     localStorage.setItem('token', token);
     this.token = token;
-    this.userId = userId;
+    this.employeeId = employeeId;
     this.user = user;
 
   }
@@ -69,17 +69,19 @@ export class AuthService {
 
   getUser(token: string) {
     this._userService.getUser(token).subscribe((user: any) => {
-      this.setInStorage(token, user.id, new User(user.attributes.username, user.attributes.email, '', '', user.id));
+      this.setInStorage(token,
+        user.relationships.employee.data.id,
+        new User(user.attributes.username, user.attributes.email, '', user.attributes.role, user.id));
     });
   }
 
   logOut() {
     this.token = '';
-    this.userId = '';
+    this.employeeId = '';
     this.user = null;
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    localStorage.removeItem('userId');
+    localStorage.removeItem('employeeId');
     this.router.navigate(['/login']);
   }
 }
