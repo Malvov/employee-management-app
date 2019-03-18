@@ -5,11 +5,12 @@ import { APP_ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { PagesModule } from './pages/pages.module';
-
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
