@@ -32,9 +32,9 @@
                     <label for="entry_date">Entry date</label>
                     <input [(ngModel)]="employee.entry_date" name="entry_date" type="text" class="form-control" placeholder="Entry date" required>
                 </div>
-                <div class="form-group">
-                  <label for="Active">Active</label>
-                  <input [(ngModel)]="employee.active" name="active" type="text" class="form-control" placeholder="Password" required>
+                <div class="form-check">                  
+                  <input [(ngModel)]="employee.active" name="active" type="checkbox" class="form-check-input" placeholder="Password" required>
+                  <label for="form-check-label">Active</label>
                 </div>
             </div>
           </div>

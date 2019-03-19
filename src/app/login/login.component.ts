@@ -12,7 +12,6 @@ import { Subscriber } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
 
-  email: string;
   auth: Auth;
 
   constructor(
@@ -21,6 +20,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (this._userService.isLoggedIn()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   logIn(form: NgForm) {

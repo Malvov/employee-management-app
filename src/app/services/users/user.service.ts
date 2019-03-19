@@ -89,19 +89,23 @@ export class UserService {
   }
 
   createUser(user: User, employee: Employee) {
-    let url = SERVICES_URL_V1 + '/user';
+    let url = SERVICES_URL_V1 + '/users/create';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token
     });
-    let attributes = { 
-      user: {
-        user,
-        employee_attributes: {
-          employee
-        }
+    let userPost = {
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      employee_attributes: {
+        first_name: employee.first_name,
+        last_name: employee.last_name,
+        entry_date: employee.entry_date,
+        active: employee.active
       }
-     };
-     return this.httpClient.post(url, { ' user': attributes }, { headers: headers }).map((res: any) => res.data);
+    };
+    console.log(userPost);
+    return this.httpClient.post(url, { 'user': userPost }, { headers: headers }).map((res: any) => res.data);
   }
 }
