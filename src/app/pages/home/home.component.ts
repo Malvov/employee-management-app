@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
-import { AuthService } from '../../services/service.index';
+import { UserService } from '../../services/service.index';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +11,11 @@ export class HomeComponent implements OnInit {
 
   user: User;
   constructor(
-    public _authService: AuthService
+    public _userService: UserService
   ) { }
 
   ngOnInit() {
-    this.user = this._authService.user;
+    this.user = this._userService.user;
   }
 
 }

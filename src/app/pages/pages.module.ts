@@ -8,6 +8,9 @@ import { PAGES_ROUTES } from './pages.routes';
 
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user.component';
+
 
 @NgModule({
   imports: [
@@ -18,7 +21,9 @@ import { HomeComponent } from './home/home.component';
   ],
   declarations: [
     PagesComponent,
-    HomeComponent
+    HomeComponent,
+    UsersComponent,
+    UserComponent
   ],
   exports: [
     PagesComponent

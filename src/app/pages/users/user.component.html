@@ -1,0 +1,48 @@
+<h1>User info</h1>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <form #form="ngForm" ngNativeValidate (ngSubmit)="saveUser(form)">
+          <div class="row">
+            <div class="col md-6">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input [(ngModel)]="user.username" name="name" type="text" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input [(ngModel)]="user.email" name="email" type="email" class="form-control" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input [(ngModel)]="user.password" name="password" type="password" class="form-control" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="first_name">First name</label>
+                    <input [(ngModel)]="employee.first_name" name="first_name" type="text" class="form-control" placeholder="First name" required>
+                </div>
+                <div class="form-group">
+                  <label for="last_name">Last name</label>
+                  <input [(ngModel)]="employee.last_name" name="last_name" type="text" class="form-control" placeholder="Last name" required>
+                </div>
+                <div class="form-group">
+                    <label for="entry_date">Entry date</label>
+                    <input [(ngModel)]="employee.entry_date" name="entry_date" type="text" class="form-control" placeholder="Entry date" required>
+                </div>
+                <div class="form-group">
+                  <label for="Active">Active</label>
+                  <input [(ngModel)]="employee.active" name="active" type="text" class="form-control" placeholder="Password" required>
+                </div>
+            </div>
+          </div>
+          <button [disabled]="!form.valid" type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+            <i class="fa fa-save"></i>
+            Submit</button>
+          <a [routerLink]="['/users']" routerLinkActive="router-link-active"  class="btn btn-inverse waves-effect waves-light">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>

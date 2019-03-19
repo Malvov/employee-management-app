@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import {
-  AuthService,
   LoginGuard,
   UserService,
   EmployeeService
@@ -16,7 +15,6 @@ import {
   ],
   declarations: [],
   providers: [
-    AuthService,
     LoginGuard,
     UserService,
     EmployeeService

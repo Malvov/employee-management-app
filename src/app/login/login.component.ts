@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../services/service.index';
-import { User } from '../models/user.model';
+import { UserService } from '../services/service.index';
 import { Auth } from '../models/auth.model';
 import { Subscriber } from 'rxjs';
 
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     public router: Router,
-    public _authService: AuthService
+    public _userService: UserService
   ) { }
 
   ngOnInit() {
@@ -31,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     let auth = new Auth(form.value.email, form.value.password);
 
-    this._authService.login(auth)
+    this._userService.login(auth)
     .subscribe(() => {
       // nasty af
       setTimeout(() => {
