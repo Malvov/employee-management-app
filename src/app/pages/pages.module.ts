@@ -10,6 +10,7 @@ import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './users/user.component';
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { EmployeesComponent } from './employees/employees.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
   declarations: [
     PagesComponent,
     HomeComponent,
-    UserComponent
+    UserComponent,
+    EmployeesComponent
   ],
   exports: [
     PagesComponent

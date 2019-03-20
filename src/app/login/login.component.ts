@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       // nasty af
       setTimeout(() => {
         this.router.navigate(['/home']);
-      }, 500);
+      }, 2000);
      });
 
   }

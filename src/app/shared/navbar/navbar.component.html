@@ -16,13 +16,18 @@
        [ngClass]="{'show': !isCollapsed}">
 
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link"
-           href="#">Link One</a>
+      <li class="nav-item">
+          <a [routerLink]="['/employees']" routerLinkActive="router-link-active" class="nav-link">
+            <i class="fa fa-users"></i>
+            Employees
+          </a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           href="#">Link Two</a>
+           href="#">
+           <i class="fa fa-clock-o"></i>
+           Shifts
+          </a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
