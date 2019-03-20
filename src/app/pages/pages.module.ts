@@ -10,6 +10,7 @@ import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user.component';
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { UserComponent } from './users/user.component';
     CommonModule,
     FormsModule,
     PAGES_ROUTES,
-    SharedModule
+    SharedModule,
+    BsDatepickerModule.forRoot()
   ],
   declarations: [
     PagesComponent,

@@ -7,17 +7,11 @@ import { UserService } from '../../services/service.index';
   styles: []
 })
 export class NavbarComponent implements OnInit {
-  navbarOpen = false;
-
+  isCollapsed = true;
   constructor(
     public _userService: UserService
   ) { }
 
   ngOnInit() {
   }
-
-  toggleNavbar() {
-    this.navbarOpen = !this.navbarOpen;
-  }
-
 }

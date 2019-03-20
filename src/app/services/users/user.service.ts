@@ -8,6 +8,7 @@ import { User } from '../../models/user.model';
 import { Auth } from '../../models/auth.model';
 import { Employee } from '../../models/employee.model';
 import { SERVICES_URL_V1 } from 'src/app/config/config';
+import swal from 'sweetalert';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,8 @@ export class UserService {
           this.setInStorage(this.token, user.relationships.employee.data.id, 
             new User(user.attributes.username, user.attributes.email, '', user.attributes.role, user.id)
             );
+            swal('Bienvenido', user.attributes.username, 'success');
+            return true;
         });
       }
     ).catch(err => {
@@ -105,7 +108,12 @@ export class UserService {
         active: employee.active
       }
     };
-    console.log(userPost);
-    return this.httpClient.post(url, { 'user': userPost }, { headers: headers }).map((res: any) => res.data);
+    return this.httpClient.post(url, { 'user': userPost }, { headers: headers }).map((res: any) => {
+      swal('User created', 'success');
+      return res.data;
+    }).catch(err => {
+        swal(err.error.message, err.error.errors.message, 'error');
+        return throwError(err);
+    });
   }
 }

@@ -5,10 +5,14 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { CollapseModule, BsDropdownModule } from 'ngx-bootstrap';
+
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    CollapseModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   declarations: [
     NavbarComponent,
