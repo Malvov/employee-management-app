@@ -57,7 +57,7 @@ export class UserService {
     return this.httpClient.post(url, { 'auth': auth }).map(
       (res: any) => {
         this.token = res.jwt;
-        this.getUser(res.jwt).subscribe((user: any) => {
+        this.getUser('login').subscribe((user: any) => {
           this.setInStorage(this.token, user.relationships.employee.data.id, 
             new User(user.attributes.username, user.attributes.email, '', user.attributes.role, user.id)
             );
@@ -82,17 +82,20 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  getUser(token: string) {
-    let url = SERVICES_URL_V1 + '/user';
+  getUser(userId: string) {
+    let url = SERVICES_URL_V1 + '/users/' + userId;
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + this.token
     });
-    return this.httpClient.get(url, { headers: headers }).map((res: any) => res.data);
+    return this.httpClient.get(url, { headers: headers }).map((res: any) => res.data).catch(err => {
+      swal(err.error.message, err.error.errors.message, 'error');
+      return throwError(err);
+    });
   }
 
   createUser(user: User, employee: Employee) {
-    let url = SERVICES_URL_V1 + '/users/create';
+    let url = SERVICES_URL_V1 + '/users';
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token
@@ -101,10 +104,11 @@ export class UserService {
       username: user.username,
       email: user.email,
       password: user.password,
+      role: user.role,
       employee_attributes: {
-        first_name: employee.first_name,
-        last_name: employee.last_name,
-        entry_date: employee.entry_date,
+        first_name: employee.firstName,
+        last_name: employee.lastName,
+        entry_date: employee.entryDate,
         active: employee.active
       }
     };
@@ -114,6 +118,51 @@ export class UserService {
     }).catch(err => {
         swal(err.error.message, err.error.errors.message, 'error');
         return throwError(err);
+    });
+  }
+
+  updateUser(user: User, employee: Employee) {
+    let url = SERVICES_URL_V1 + '/users/' + user.id;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+    let userPost = {
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      role: user.role,
+      employee_attributes: {
+        first_name: employee.firstName,
+        last_name: employee.lastName,
+        entry_date: employee.entryDate,
+        active: employee.active,
+        id: employee.id
+      }
+    };
+    console.log(user.id);
+    console.log(userPost);
+    console.log(url);
+    return this.httpClient.put(url, { 'user': userPost }, { headers: headers }).map((res: any) => {
+      swal('User updated', 'success');
+      return res.data;
+    }).catch(err => {
+      swal(err.error.message, err.error.errors.message, 'error');
+      return throwError(err);
+    });
+  }
+
+  getEmployee(employeeId: string) {
+    let url = SERVICES_URL_V1 + '/employees/' + employeeId;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+    return this.httpClient.get(url, { headers: headers }).map((res: any) => {
+      return res.data;
+    }).catch(err => {
+      swal(err.error.message, err.error.errors.message, 'error');
+      return throwError(err);
     });
   }
 }
