@@ -1,0 +1,61 @@
+
+<div class="container py-5">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="row">
+              <div class="col-md-6 mx-auto">
+
+                  <!-- form card shift -->
+                  <div class="card rounded-0">
+                      <div class="card-header">
+                          <h3 class="mb-0">Shift</h3>
+                      </div>
+                      <div class="card-body">
+                          <form ngNativeValidate #form="ngForm" class="form-horizontal form-material" (ngSubmit)="saveShift(form)">
+                              <div class="form-group">
+                                <label for="date">Date</label>
+                                <input [(bsValue)]="shift.date" value="{{ shift.date | date:'MM/dd/yyyy' }}" name="date" type="text" class="form-control" bsDatepicker required>
+                              </div>
+                              <div class="form-group">
+                                <div class="row">
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                      <label for="checkIn">Check In</label>
+                                      <timepicker [(ngModel)]="shift.check_in" name="check_in" required></timepicker>
+                                  </div>
+                                  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                      <label for="checkOut">Check Out</label>
+                                      <timepicker [(ngModel)]="shift.check_out" name="check_out" required></timepicker>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="employee_id">Employee</label>
+                                <select [(ngModel)]="shift.employee_id" name="employee_id" class="form-control" required>
+                                    <option value="" selected disabled>Please select</option>
+                                    <option *ngFor="let employee of employees" [value]="employee.id">{{ employee.attributes.firstName + ' ' + employee.attributes.lastName }}</option>
+                                </select>
+                              </div>
+                              <div class="form-group">
+                                <label for="comment">Comment</label>
+                                <textarea [(ngModel)]="shift.comment" name="comment" class="form-control"></textarea>
+                              </div>
+                              <button [disabled]="!form.valid" class="btn btn-success btn-lg float-right" id="btnSave">Save</button>
+                              <a [routerLink]="['/shifts']" routerLinkActive="router-link-active"  class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                          </form>
+                      </div>
+                      <!--/card-block-->
+                  </div>
+                  <!-- /form card login -->
+
+              </div>
+
+
+          </div>
+          <!--/row-->
+
+      </div>
+      <!--/col-->
+  </div>
+  <!--/row-->
+</div>
+<!--/container-->

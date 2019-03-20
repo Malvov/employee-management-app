@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12 col-lg-12">
+    <br>
+    <br>
+    <br>
+    <a [routerLink]="['/shifts', 'new']" class="btn waves-effect waves-light btn-rounded btn-info">
+      <i class="fa fa-plus"></i>
+          New shift
+    </a>
+    <br>
+    <br>
+    <br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>
+            Date
+          </th>
+          <th>
+            Check in
+          </th>
+          <th>
+            Check out
+          </th>
+          <th>
+            Employee
+          </th>
+          <th>
+            
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shift of shifts">
+          <td>
+              {{ shift.attributes.date | date: 'MM/dd/yyyy' }}
+          </td>
+          <td>
+            {{ shift.attributes.checkIn | date: 'shortTime' }}
+          </td>
+          <td>
+            {{ shift.attributes.checkOut | date: 'shortTime' }}
+          </td>
+          <td>
+            {{ shift.attributes.employeeId }}
+          </td>
+          <td>
+              <a [routerLink]="['/shifts', shift.id]" routerLinkActive="router-link-active"  class="btn btn-primary">
+                <i class="fa fa-edit"></i>
+              </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

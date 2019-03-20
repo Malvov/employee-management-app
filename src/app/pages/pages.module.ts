@@ -9,8 +9,11 @@ import { PAGES_ROUTES } from './pages.routes';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './users/user.component';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { EmployeesComponent } from './employees/employees.component';
+import { ShiftsComponent } from './shifts/shifts.component';
+import { ShiftComponent } from './shifts/shift.component';
+
+import { BsDatepickerModule, TimepickerModule } from 'ngx-bootstrap';
 
 
 @NgModule({
@@ -19,13 +22,16 @@ import { EmployeesComponent } from './employees/employees.component';
     FormsModule,
     PAGES_ROUTES,
     SharedModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot()
   ],
   declarations: [
     PagesComponent,
     HomeComponent,
     UserComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    ShiftsComponent,
+    ShiftComponent
   ],
   exports: [
     PagesComponent

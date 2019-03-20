@@ -15,10 +15,10 @@ export class EmployeesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getDoctors();
+    this.getEmployees();
   }
 
-  getDoctors() {
+  getEmployees() {
     this._employeeService.getEmployees().subscribe((employees: any) => {
       this.employees = employees;
     });
