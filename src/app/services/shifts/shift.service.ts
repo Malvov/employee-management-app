@@ -59,4 +59,34 @@ export class ShiftService {
     });
   }
 
+  updateShift(shift: Shift) {
+    let url = SERVICES_URL_V1 + '/shifts/' + shift.id;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+
+    return this.httpClient.put(url, { 'shift': shift }, { headers: headers }).map((res: any) => {
+      swal('Shift updated', 'success');
+      return res.data;
+    }).catch(err => {
+      swal('Something went wrong', 'info');
+      return throwError(err);
+    });
+  }
+
+  destroyShift(shiftId: string) {
+    let url = SERVICES_URL_V1 + '/shifts/' + shiftId;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token
+    });
+
+    return this.httpClient.delete(url, { headers: headers }).map((res: any) => {
+      swal('Shift deleted', 'success');
+      return true;
+    }).catch(err => {
+      return throwError(err);
+    })
+  }
 }

@@ -30,7 +30,7 @@ export class ShiftComponent implements OnInit {
       if (this.shiftId !== 'new') {
         this._shiftService.getShift(this.shiftId).subscribe((shift: any) => {
           this.shift = new Shift(shift.attributes.date, shift.attributes.checkIn, shift.attributes.checkOut, shift.attributes.employeeId,
-            shift.attributes.comment);
+            shift.attributes.comment, shift.id);
             console.log(this.shift);
         });
       } else {
@@ -42,6 +42,13 @@ export class ShiftComponent implements OnInit {
   saveShift(form: NgForm) {
     if (form.valid && this.shiftId === 'new') {
       this._shiftService.createShift(this.shift).subscribe((res: any) => {
+        this.router.navigate(['/shifts']);
+      });
+      return;
+    }
+
+    if (form.valid && this.shiftId !== 'new') {
+      this._shiftService.updateShift(this.shift).subscribe((res: any) => {
         this.router.navigate(['/shifts']);
       });
       return;
