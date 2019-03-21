@@ -21,6 +21,9 @@
             <th>
               Check out
             </th>
+            <th>
+              Comment
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -33,6 +36,9 @@
             </td>
             <td>
               {{ shift.attributes.checkOut | date: 'shortTime' }}
+            </td>
+            <td>
+              {{ shift.attributes.comment }}
             </td>
           </tr>
         </tbody>

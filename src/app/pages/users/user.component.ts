@@ -48,13 +48,13 @@ export class UserComponent implements OnInit {
   saveUser(form: NgForm) {
     if (form.valid && this.userId ===  'new') {
       this._userService.createUser(this.user, this.employee).subscribe((user: any) => {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/employees']);
       });
       return;
     }
     if (form.valid && this.userId !== 'new') {
       this._userService.updateUser(this.user, this.employee).subscribe((user: any) => {
-        this.router.navigate(['/users']);
+        this.router.navigate(['/emmployees']);
       });
       return;
     }
